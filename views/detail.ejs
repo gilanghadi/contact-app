@@ -1,0 +1,53 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="mb-4">Detail Contact</h2>
+
+      <% if (!contact) { %>
+
+      <div class="alert alert-danger fw-bold" role="alert">
+        Data Contact Tidak Ada..
+        <br />
+        <a href="/contact" class="alert-link fw-normal"
+          >&laquo; Kembali Ke Daftar Contact</a
+        >
+      </div>
+
+      <% } else { %>
+      <div class="card" style="width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title"><%= contact.nama %></h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">
+            <%= contact.nohp %>
+          </h6>
+          <p class="card-text"><%= contact.email %></p>
+          <a
+            href="/contact/edit/<%= contact.nama %>"
+            class="card-link btn btn-info badge"
+            >Ubah</a
+          >
+          <!-- <a
+            href="/contact/delete/<%= contact.nama %>"
+            class="card-link btn btn-danger badge"
+            onclick="return confirm('yakin?')"
+            >Hapus</a
+          > -->
+          <form method="post" action="/contact?_method=DELETE" class="d-inline">
+            <input type="hidden" name="nama" value="<%= contact.nama %>" />
+            <button
+              type="submit"
+              class="btn btn-danger badge"
+              onclick="return confirm('yakin?')"
+            >
+              Hapus
+            </button>
+          </form>
+          <a href="/contact" class="card-link d-block mt-3"
+            >&laquo; Kembali Ke Daftar Contact</a
+          >
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>
